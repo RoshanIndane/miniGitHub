@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <div id="main">
+        <button id="repo-btn">Get Repos</button>
+    </div>
+    <div id="datadiv"></div>
+    <div id="repoos"><h1>--Public Repos--</h1></div>
+
+</html>
+<script type="module">
+
+    import navbar from "./components/navbar.js";
+
+    import getuser from "./script/getuser.js";
+
+    let container = document.getElementById("container");
+
+    var response;
+
+    container.innerHTML = navbar();
+
+    let input = document.getElementById("search-inp");
+    input.innerHTML="";
+    let datadiv=document.getElementById("datadiv");
+
+    input.addEventListener("keypress", searchuser);
+
+    let repo_btn=document.getElementById("repo-btn");
+    repo_btn.addEventListener("click", getuserrepos)
+
+
+
+    async function searchuser(event) {
+
+        if (event.key === "Enter") {
+
+            let query = input.value;
+
+             response = await getuser(query);
+           
+
+            let { avatar_url, followers, following, location, name, public_repos } = response;
+
+            // console.log("follower:",followers)
+            // console.log("following:",following)
+            // console.log("location:",location)
+
+            document.getElementById("profile-img").src = avatar_url;
+            datadiv.innerHTML="";
+
+            let div= document.createElement("div");
+            div.setAttribute("class", "box");
+
+            let div1=document.createElement("div");
+            div1.setAttribute("class", "texttt")
+
+            let img= document.createElement("img");
+            img.setAttribute("class", "profimg");
+            img.style.width="100%"
+            img.src=avatar_url;
+            
+            let name1= document.createElement("h2");
+            name1.textContent= name
+
+            let location1= document.createElement("h3");
+            location1.textContent=`Location: ${location}`
+
+            let follow= document.createElement("h3");
+            follow.textContent=`Followers: ${followers}`
+            
+            let folloing= document.createElement("h3");
+            folloing.textContent=`Following: ${following}`
+
+            let PublicRepos= document.createElement("h3");
+            PublicRepos.textContent=`PublicRepos: ${public_repos}`
+
+
+            div.append(img);
+            div1.append(name1, location1, follow, folloing, PublicRepos);
+
+            datadiv.append(div, div1)
+            //console.log(response)
+        }
+    }
+
+
+    async function getuserrepos(){
+        try{
+            let res= await fetch(response.repos_url)
+
+        let reop_data=await res.json();
+        //console.log(reop_data)
+        let data =reop_data;
+
+        for(var r=0; r<data.length; r++){
+            let div=document.createElement("div");
+            div.setAttribute("class", "repobox");
+
+            let repos=document.createElement("p");
+            
+            repos.innerHTML=data[r].url;
+
+            div.append(repos);
+
+            repoos.append(div)
+
+            
+        }
+    }
+
+        catch(err){
+            console.log(err)
+        }
+
+
+        
+
+    }
+</script>

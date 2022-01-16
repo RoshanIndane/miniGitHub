@@ -1,0 +1,100 @@
+body{
+    margin: 0%;
+    background-color: #0d1117;
+}
+#nav{
+    display: flex;
+    height: 70px;
+background-color: black;
+align-items: center;
+}
+#logo{
+    width: 5%;
+    text-align: right;
+}
+#list li{
+display: inline;
+color: white;
+margin-right: 10px;
+}
+#options{
+    width: 50%;
+}
+#profile img{
+    width: 8%;
+    
+    border-radius: 30px;
+    margin-left: 85%;
+}
+a{
+    color: white;
+    text-decoration: none;
+    
+}
+#datadiv{
+    display: flex;
+    width: 35%;
+    height: 250px;
+    margin: auto;
+    
+    align-items: center;
+    
+}
+.profimg{
+    width: 150px;
+    height: 250px;
+    
+
+    
+}
+.texttt{
+    
+    margin-left: 50px;
+    width: 50%;
+}
+
+h3{
+    color: whitesmoke;
+}
+h2{
+    color: whitesmoke;
+}
+p{
+    color: whitesmoke;
+}
+#repoos{
+    
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    
+}
+h1{
+    color: whitesmoke;
+    background-color: black;
+}
+#main{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    
+}
+button{
+    width: 7%;
+    height: 30px;
+    border: 2px solid black;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+}
+button:hover{
+    background-color: black;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+}
+#search{
+    margin-left: 50px;
+}
